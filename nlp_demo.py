@@ -1,4 +1,4 @@
-# Description: This program combines the major principles of natural language processing in a short, 50-line demo!
+# combines the major principles of natural language processing in a short, 50-line demo
 
 from textblob import TextBlob
 from textblob import Word
