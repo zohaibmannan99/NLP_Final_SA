@@ -21,7 +21,7 @@ print("Retrieving summaries...")
 print()
 time.sleep(2)
 
-# Gets all the latest URL's from the NY Times Technology Section. (see news_extract.py for more detail)
+# Gets all the latest URL's from the NY Times Politics Section. (see news_extract.py for more detail)
 content_string = get_content_string(my_url)
 starts, ends = find_occurrences(content_string)
 url_list = get_all_urls(starts, ends, content_string)
