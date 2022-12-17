@@ -17,13 +17,12 @@ class LSTM:
         self.by = torch.zeros((output_size, 1))
 
     def parameters(self):
-        # return an iterator over the model's learnable parameters
-        return (self.Wf, self.bf, self.Wi, self.bi, self.Wo, self.bo,
-                self.Wc, self.bc, self.Wy, self.by)
+    # return an iterator over the model's learnable parameters
+        return (self.Wf, self.bf, self.Wi, self.bi, self.Wo, self.bo, self.Wc, self.bc, self.Wy, self.by)
     
     def forward(self, X, h_prev, c_prev):
         # concatenate input and previous hidden state
-        X_with_h_prev = np.concatenate((X, h_prev), axis=0)
+        X_with_h_prev = torch.cat((X, h_prev), dim=1)
         
         # compute forget gate
         f = sigmoid(np.dot(self.Wf, X_with_h_prev) + self.bf)
@@ -44,12 +43,13 @@ class LSTM:
         h = o * np.tanh(c)
         
         # compute output
-        y = np.dot(self.Wy, h) + self.by
+        y = torch.matmul(self.Wy, h.t()) + self.by
         
         return h, c, y
     
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+    return 1 / (1 + torch.exp(-x))
+
 
 
 #USE LSTM CLASS
